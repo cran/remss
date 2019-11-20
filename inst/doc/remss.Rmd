@@ -1,0 +1,134 @@
+---
+title: "remss"
+author: "Wei Xu, Susie Su, Yi Zhu"
+date: "`r Sys.Date()`"
+show_toc: true
+slug: xlink
+githubEditURL: https://github.com/qiuanzhu/xlink/blob/master/vignettes/remss.Rmd
+output: 
+     rmarkdown::html_vignette:
+     toc: yes
+vignette: >
+  %\VignetteIndexEntry{An Introduction to remss}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# 1. Introduction
+**remss** from [github](https://github.com/qiuanzhu/remss) is a package for TNM stage is important in treatment decision-making and outcome predicting. The existing oropharyngeal Cancer (OPC) TNM stages have not made distinction of the two sub sites of HPV+ and HPV- diseases.We developed novel criteria to assess performance of the TNM stage grouping schemes based on parametric modeling adjusting on important clinical factors. These criteria evaluate the TNM stage grouping scheme in five different measures: hazard  consistency, hazard discrimination, explained variation, likelihood difference, and balance. 
+
+## Reference:
+> "Xu, W., et al. 'Refining evaluation methodology on TNM stage system: assessment on HPV-related oropharyngeal cancer.'Austin Biometrics and Biostatistics 2 (2015): 1014." ([via](https://www.austinpublishinggroup.com/biometrics/fulltext/biometrics-v2-id1014.php))
+
+
+# 2. Installation
+You can install **remss** from [github] (https://github.com/qiuanzhu/remss):
+
+```{r eval=FALSE}
+library("devtools")
+install_github("qiuanzhu/remss")
+
+```
+
+
+#3. Examples
+
+In the following examples, a simulated dataset with 10 variables and 504 observations. 
+```{r eval=FALSE}
+library("remss")
+head(Rdata)
+
+```
+
+
+```{r, echo=FALSE, results='asis'}
+library(remss)
+knitr::kable(head(Rdata))
+```
+
+There are three grouping schemes (**Scheme.1**,**Scheme.2**,**Scheme.3**) base on the classification (**Basic_group**). Five measures of grouping scheme and weight for each measurement are introduced. 
+
+```{r eval=FALSE}
+data(Rdata)
+Scheme=c('Scheme.1','Scheme.2','Scheme.3')
+Covar=c('Age','Treatment')
+weight=c(1,1,0.5,0.5,1)
+Order=list(c('I','II','III'),c('I','II','III','IV'),c('I','II','III','IV'))
+table<-rank(os='OS',ostime='survmonth',groupvar='Basic_group', scheme=Scheme, order=Order, covariate=Covar,weight=weight,data=Rdata)
+```
+
+```{r, echo=FALSE, results='asis'}
+data(Rdata)
+Scheme=c('Scheme.1','Scheme.2','Scheme.3')
+Covar=c('Age','Treatment')
+weight=c(1,1,0.5,0.5,1)
+Order=list(c('I','II','III'),c('I','II','III','IV'),c('I','II','III','IV'))
+table<-rank(os='OS',ostime='survmonth',groupvar='Basic_group', scheme=Scheme, order=Order, covariate=Covar,weight=weight,data=Rdata)
+```
+
+Variable Information:
+
+```{r echo=FALSE, results='asis'}
+knitr::kable(table[1])
+
+```
+
+Observation number:
+
+```{r echo=FALSE, results='asis'}
+knitr::kable(table[2])
+
+```
+
+
+Hazard Consistency Measurement:
+
+```{r echo=FALSE, results='asis'}
+knitr::kable(table[3])
+
+```
+
+
+Hazard Discrimination Measurement:
+
+```{r echo=FALSE, results='asis'}
+knitr::kable(table[4])
+
+```
+
+
+Likelihood Difference Measurement:
+
+```{r echo=FALSE, results='asis'}
+knitr::kable(table[5])
+
+```
+
+Explained Variance Measurement:
+
+```{r echo=FALSE, results='asis'}
+knitr::kable(table[6])
+
+```
+
+Balance Measurement:
+
+```{r echo=FALSE, results='asis'}
+knitr::kable(table[7])
+
+```
+
+Overall Rank:
+
+```{r echo=FALSE, results='asis'}
+knitr::kable(table[8])
+
+```
+
