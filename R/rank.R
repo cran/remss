@@ -62,8 +62,8 @@ rank <- function(os, ostime, groupvar, scheme, order, covariate, weight, data) {
     
     for (i in 1:total_n) {
         if (Num_ind[i] == 1) {
-            Mean[i] <- round( mean(data_red[, var_col[i]]),4)
-            Sd[i] <-  round( sd(data_red[, var_col[i]]),4)
+            Mean[i] <- round(mean(data_red[, var_col[i]]), 4)
+            Sd[i] <- round(sd(data_red[, var_col[i]]), 4)
             Level[[length(Level) + 1]] <- "Null"
         } else {
             Mean[i] <- NA
@@ -140,11 +140,11 @@ rank <- function(os, ostime, groupvar, scheme, order, covariate, weight, data) {
     
     
     main_list = c(os, ostime, groupvar)
-    T1 = hz_cons_measure(main_list, new_var_list, covariate, data_red)  
-    T2 = hz_dis_measure(main_list, scheme, new_var_list, covariate, data_red)    
-    T3 = lik_diff_measure(main_list, scheme, covariate, data_red)   
-    T4 =  explain_var_measure(main_list[1:2], scheme, new_var_list, new_var_list2, data_red)
-    T5 = balance_measure(main_list[1], scheme, data_red)   
+    T1 = hz_cons_measure(main_list, new_var_list, covariate, data_red)
+    T2 = hz_dis_measure(main_list, scheme, new_var_list, covariate, data_red)
+    T3 = lik_diff_measure(main_list, scheme, covariate, data_red)
+    T4 = explain_var_measure(main_list[1:2], scheme, new_var_list, new_var_list2, data_red)
+    T5 = balance_measure(main_list[1], scheme, data_red)
     T6 = overall_rank(T1, T2, T3, T4, T5, weight)
     
     mylist <- c(T0, T1, T2, T3, T4, T5, T6)

@@ -1,6 +1,6 @@
 Package: remss
 Title: Refining Evaluation Methodology on Stage System
-Version: 1.0.0
+Version: 1.0.1
 Authors@R: c(person(given = "Wei",
            family = "Xu",
            role = c("aut"),
@@ -23,10 +23,10 @@ RoxygenNote: 6.1.1
 Suggests: knitr, rmarkdown, testthat
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2019-10-24 17:33:15 UTC; Yi
+Packaged: 2021-01-14 03:35:22 UTC; Yi
 Author: Wei Xu [aut],
   Susie Su [aut],
   Yi Zhu [cre]
 Maintainer: Yi Zhu <yizhu87@gmail.com>
 Repository: CRAN
-Date/Publication: 2019-11-20 16:30:02 UTC
+Date/Publication: 2021-01-14 06:10:02 UTC

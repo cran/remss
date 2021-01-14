@@ -34,7 +34,7 @@ hz_dis_measure <- function(main_list, stage_list, stage_list2, covar_list, data)
         Score[i] <- (Reduce_L2 - Reduce_L)/(reduce_g - 2)
     }
     
-    table <- data.frame(Scheme, Score)[order(Score), ]
+    table <- data.frame(Scheme, Score)[sort.list(Score), ]
     diff <- table[n, 2] - table[1, 2]
     for (j in 1:n) {
         Std_Score[j] <- (table[j, 2] - table[1, 2])/diff

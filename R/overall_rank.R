@@ -19,17 +19,17 @@ overall_rank <- function(HCM, HDM, LDM, EVM, BM, weight) {
     st_sc_EVM = EVM$`Explained Variance Measurement`[, c(1, 3)]
     st_sc_BM = BM$`Balance Measurement`[, c(1, 3)]
     
-    st_sc_HCM = st_sc_HCM[order(st_sc_HCM$Scheme), ]
-    st_sc_HDM = st_sc_HDM[order(st_sc_HDM$Scheme), ]
-    st_sc_LDM = st_sc_LDM[order(st_sc_LDM$Scheme), ]
-    st_sc_EVM = st_sc_EVM[order(st_sc_EVM$Scheme), ]
-    st_sc_BM = st_sc_BM[order(st_sc_BM$Scheme), ]
+    st_sc_HCM = st_sc_HCM[sort.list(st_sc_HCM$Scheme), ]
+    st_sc_HDM = st_sc_HDM[sort.list(st_sc_HDM$Scheme), ]
+    st_sc_LDM = st_sc_LDM[sort.list(st_sc_LDM$Scheme), ]
+    st_sc_EVM = st_sc_EVM[sort.list(st_sc_EVM$Scheme), ]
+    st_sc_BM = st_sc_BM[sort.list(st_sc_BM$Scheme), ]
     
     Scheme = st_sc_HCM$Scheme
-    Overall_score = st_sc_HCM[2] * weight[1] + st_sc_HDM[2] * weight[2] + st_sc_LDM[2] * weight[3] + st_sc_EVM[2] * weight[4] + 
-        st_sc_BM[2] * weight[5]
-    
-    table <- data.frame(Scheme, Overall_score)[order(Overall_score), ]
+    Overall_score = st_sc_HCM[2] * weight[1] + st_sc_HDM[2] * weight[2] + st_sc_LDM[2] * weight[3] + st_sc_EVM[2] * weight[4] + st_sc_BM[2] * 
+        weight[5]
+    order_OS <- sort.list(as.numeric(unlist(Overall_score)))
+    table <- data.frame(Scheme, Overall_score)[order_OS, ]
     Rank <- c(1:1:length(Scheme))
     colnames(table)[2] <- "Overall Score"
     table <- cbind(table, Rank)

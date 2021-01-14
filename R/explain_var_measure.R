@@ -32,7 +32,7 @@ explain_var_measure <- function(main_list, stage_list, stage_list_2, covar_list,
         col_num1[i] <- which(colnames(data) == tol_list[i])
     }
     
-    data <- data[order(data[, col_num1[2]]), ]
+    data <- data[sort.list(data[, col_num1[2]]), ]
     
     S_km <- survival::Surv(data[, col_num1[2]], data[, col_num1[1]] != 0)
     km_es <- summary(survfit(S_km ~ 1, type = "kaplan-meier"))
@@ -94,7 +94,7 @@ explain_var_measure <- function(main_list, stage_list, stage_list_2, covar_list,
         
     }
     
-    table <- data.frame(Scheme, Score)[order(-Score), ]
+    table <- data.frame(Scheme, Score)[sort.list(-Score), ]
     diff <- table[n, 2] - table[1, 2]
     
     for (j in 1:n) {

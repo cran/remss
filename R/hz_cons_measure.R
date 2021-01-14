@@ -37,7 +37,7 @@ hz_cons_measure <- function(main_list, stage_list, covar_list, data) {
         Score[i] <- (Reduce_L - Full_L)/(full_g - reduce_g)
     }
     
-    table <- data.frame(Scheme, Score)[order(Score), ]
+    table <- data.frame(Scheme, Score)[sort.list(Score), ]
     diff <- table[n, 2] - table[1, 2]
     for (j in 1:n) {
         Std_Score[j] <- (table[j, 2] - table[1, 2])/diff

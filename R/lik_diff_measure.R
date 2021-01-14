@@ -36,7 +36,7 @@ lik_diff_measure <- function(main_list, stage_list, covar_list, data) {
         Score[i] <- (Null_L - Reduce_L)/(reduce_g - 1)
     }
     
-    table <- data.frame(Scheme, Score)[order(-Score), ]
+    table <- data.frame(Scheme, Score)[sort.list(-Score), ]
     diff <- table[1, 2] - table[n, 2]
     for (j in 1:n) {
         Std_Score[j] <- (table[1, 2] - table[j, 2])/diff

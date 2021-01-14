@@ -30,7 +30,7 @@ balance_measure <- function(OS_ind, stage_list, data) {
         Score[i] <- mean(abs(num_case - expect_n)/expect_n)
     }
     
-    table <- data.frame(Scheme, Score)[order(Score), ]
+    table <- data.frame(Scheme, Score)[sort.list(Score), ]
     diff <- table[n, 2] - table[1, 2]
     for (j in 1:n) {
         Std_Score[j] <- (table[j, 2] - table[1, 2])/diff
